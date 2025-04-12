@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FisioAtlética App</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      overflow: hidden;
+      background-color: #f4f4f4;
+    }/* Splash Screen */
+#splash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #003366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#splash img {
+  width: 150px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #003366;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.menu-item {
+  padding: 15px 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover, .menu-item.active {
+  background-color: #cc0000;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Agendamento fixo */
+.agendar-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s;
+  z-index: 100;
+}
+
+.agendar-btn:hover {
+  background-color: #1ebe57;
+}
+
+/* Conteúdo interno */
+.section {
+  display: none;
+  animation: fade 0.5s ease;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+  </style>
+</head><body>
+  <div id="splash">
+    <img src="aprovado.jpg" alt="Logo FisioAtlética">
+  </div>  <div class="app-container" style="display: none;">
+    <div class="sidebar">
+      <img src="aprovado.jpg" alt="Logo FisioAtlética">
+      <div class="menu-item active" onclick="navigate('home')">Início</div>
+      <div class="menu-item" onclick="navigate('sobre')">Sobre</div>
+      <div class="menu-item" onclick="navigate('servicos')">Serviços</div>
+      <div class="menu-item" onclick="navigate('depoimentos')">Depoimentos</div>
+      <div class="menu-item" onclick="navigate('contato')">Contato</div>
+      <div class="menu-item" onclick="navigate('login')">Login</div>
+    </div>
+    <div class="content">
+      <div id="home" class="section active">
+        <h1>Bem-vindo à FisioAtlética</h1>
+        <p>Cuidando do seu movimento, transformando sua saúde.</p>
+      </div>
+      <div id="sobre" class="section">
+        <h1>Sobre Nós</h1>
+        <p>Unimos a fisioterapia e o Pilates para um atendimento completo e personalizado na Vila Mariana.</p>
+      </div>
+      <div id="servicos" class="section">
+        <h1>Serviços</h1>
+        <ul>
+          <li>Pilates personalizado</li>
+          <li>Fisioterapia esportiva</li>
+          <li>Reabilitação pós-cirúrgica</li>
+          <li>Tratamento de dores crônicas</li>
+        </ul>
+      </div>
+      <div id="depoimentos" class="section">
+        <h1>Depoimentos</h1>
+        <blockquote>"Excelente atendimento e profissionalismo. Minhas dores melhoraram muito!" - Maria S.</blockquote>
+        <blockquote>"Espaço acolhedor e professores incríveis. Recomendo!" - João P.</blockquote>
+      </div>
+      <div id="contato" class="section">
+        <h1>Contato</h1>
+        <p>Rua Vergueiro, 3185 - Vila Mariana, SP</p>
+        <p>WhatsApp: (11) 98879-7362</p>
+        <p>Instagram: @fisioatletica</p>
+      </div>
+      <div id="login" class="section">
+        <h1>Login</h1>
+        <form onsubmit="login(event)">
+          <input type="text" placeholder="Usuário" required><br><br>
+          <input type="password" placeholder="Senha" required><br><br>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+    </div>
+  </div><button class="agendar-btn" onclick="window.open('https://wa.me/5511988797362', '_blank')">Agendar Aula</button>
+
+  <script>
+    function navigate(section) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(section).classList.add('active');
+      document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+      const activeMenuItem = Array.from(document.querySelectorAll('.menu-item')).find(item => item.textContent.toLowerCase() === section);
+      if (activeMenuItem) activeMenuItem.classList.add('active');
+    }
+
+    function login(event) {
+      event.preventDefault();
+      alert('Login futuro configurado! (Funcionalidade em desenvolvimento)');
+    }
+
+    // Splash screen hide
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        document.querySelector('.app-container').style.display = 'flex';
+      }, 1500);
+    }
+  </script></body></html>
