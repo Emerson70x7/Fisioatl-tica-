@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FisioAtlética App</title>
+  <title>FisioAtlética Gestão</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
       </div>
       <div id="sobre" class="section">
         <h1>Sobre Nós</h1>
-        <p>Unimos a fisioterapia e o Pilates para um atendimento completo e personalizado na Vila Mariana.</p>
+        <p>Fisioterapia e Pilates personalizados na Vila Mariana.</p>
       </div>
       <div id="servicos" class="section">
         <h1>Serviços</h1>
@@ -41,8 +41,8 @@
       </div>
       <div id="depoimentos" class="section">
         <h1>Depoimentos</h1>
-        <blockquote>"Excelente atendimento e profissionalismo. Minhas dores melhoraram muito!" - Maria S.</blockquote>
-        <blockquote>"Espaço acolhedor e professores incríveis. Recomendo!" - João P.</blockquote>
+        <blockquote>"Excelente atendimento e profissionalismo." - Maria S.</blockquote>
+        <blockquote>"Professores incríveis. Recomendo!" - João P.</blockquote>
       </div>
       <div id="contato" class="section">
         <h1>Contato</h1>
@@ -53,10 +53,32 @@
       <div id="login" class="section">
         <h1>Login</h1>
         <form onsubmit="login(event)">
-          <input type="text" placeholder="Usuário" required><br><br>
-          <input type="password" placeholder="Senha" required><br><br>
+          <input type="text" id="username" placeholder="Usuário" required><br><br>
+          <input type="password" id="password" placeholder="Senha" required><br><br>
           <button type="submit">Entrar</button>
         </form>
+      </div>
+      <div id="painel" class="section">
+        <h1>Painel de Gestão</h1>
+        <button onclick="navigate('alunos')">Área de Alunos</button>
+        <button onclick="navigate('agenda')">Agenda</button>
+      </div>
+      <div id="alunos" class="section">
+        <h1>Área de Alunos</h1>
+        <form onsubmit="addAluno(event)">
+          <input type="text" id="nomeAluno" placeholder="Nome do aluno" required>
+          <button type="submit">Adicionar Aluno</button>
+        </form>
+        <ul id="listaAlunos"></ul>
+      </div>
+      <div id="agenda" class="section">
+        <h1>Agenda de Aulas</h1>
+        <form onsubmit="addAula(event)">
+          <input type="text" id="descAula" placeholder="Descrição da aula" required>
+          <input type="datetime-local" id="dataAula" required>
+          <button type="submit">Agendar Aula</button>
+        </form>
+        <ul id="listaAulas"></ul>
       </div>
     </div>
   </div>
