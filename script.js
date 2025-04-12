@@ -2,8 +2,9 @@
 function navigate(section) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(section).classList.add('active');
+
   document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-  const activeMenuItem = Array.from(document.querySelectorAll('.menu-item')).find(item => item.textContent.toLowerCase() === section);
+  const activeMenuItem = Array.from(document.querySelectorAll('.menu-item')).find(item => item.textContent.toLowerCase().includes(section));
   if (activeMenuItem) activeMenuItem.classList.add('active');
 }
 
@@ -19,7 +20,6 @@ function login(event) {
   }
 }
 
-// Splash Screen
 window.onload = function() {
   setTimeout(() => {
     document.getElementById('splash').style.display = 'none';
@@ -29,7 +29,6 @@ window.onload = function() {
   }, 1500);
 };
 
-// Gestão de Alunos
 function addAluno(event) {
   event.preventDefault();
   const nome = document.getElementById('nomeAluno').value;
@@ -60,7 +59,6 @@ function loadAlunos() {
   });
 }
 
-// Gestão de Aulas
 function addAula(event) {
   event.preventDefault();
   const descricao = document.getElementById('descAula').value;
@@ -81,9 +79,9 @@ function loadAulas() {
   aulas.forEach((aula, index) => {
     const li = document.createElement('li');
     li.textContent = `${aula.descricao} - ${new Date(aula.data).toLocaleString()} - Presença: ${aula.presença ? 'Sim' : 'Não'} `;
-    const marcarPresença = document.createElement('button');
-    marcarPresença.textContent = 'Marcar Presença';
-    marcarPresença.onclick = () => {
+    const marcarPresenca = document.createElement('button');
+    marcarPresenca.textContent = 'Marcar Presença';
+    marcarPresenca.onclick = () => {
       aulas[index].presença = true;
       localStorage.setItem('aulas', JSON.stringify(aulas));
       loadAulas();
@@ -95,7 +93,7 @@ function loadAulas() {
       localStorage.setItem('aulas', JSON.stringify(aulas));
       loadAulas();
     };
-    li.appendChild(marcarPresença);
+    li.appendChild(marcarPresenca);
     li.appendChild(excluir);
     lista.appendChild(li);
   });
