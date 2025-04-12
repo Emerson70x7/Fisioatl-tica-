@@ -4,76 +4,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="FisioAtlética - Fisioterapia e Pilates em Vila Mariana, SP. Cuide da sua saúde com quem entende." />
-  <title>FisioAtlética Fisioterapia e Pilates</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
+  <title>FisioAtlética App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <img src="aprovado.jpg" alt="Logo FisioAtlética" class="logo" />
-      <nav>
+  <div id="splash">
+    <img src="aprovado.jpg" alt="Logo FisioAtlética">
+  </div>
+  <div class="app-container" style="display: none;">
+    <div class="sidebar">
+      <img src="aprovado.jpg" alt="Logo FisioAtlética">
+      <div class="menu-item active" onclick="navigate('home')">Início</div>
+      <div class="menu-item" onclick="navigate('sobre')">Sobre</div>
+      <div class="menu-item" onclick="navigate('servicos')">Serviços</div>
+      <div class="menu-item" onclick="navigate('depoimentos')">Depoimentos</div>
+      <div class="menu-item" onclick="navigate('contato')">Contato</div>
+      <div class="menu-item" onclick="navigate('login')">Login</div>
+    </div>
+    <div class="content">
+      <div id="home" class="section active">
+        <h1>Bem-vindo à FisioAtlética</h1>
+        <p>Cuidando do seu movimento, transformando sua saúde.</p>
+      </div>
+      <div id="sobre" class="section">
+        <h1>Sobre Nós</h1>
+        <p>Unimos a fisioterapia e o Pilates para um atendimento completo e personalizado na Vila Mariana.</p>
+      </div>
+      <div id="servicos" class="section">
+        <h1>Serviços</h1>
         <ul>
-          <li><a href="#home">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#depoimentos">Depoimentos</a></li>
-          <li><a href="#contato">Contato</a></li>
+          <li>Pilates personalizado</li>
+          <li>Fisioterapia esportiva</li>
+          <li>Reabilitação pós-cirúrgica</li>
+          <li>Tratamento de dores crônicas</li>
         </ul>
-      </nav>
-      <a class="whatsapp-btn" href="https://wa.me/5511988797362" target="_blank">Agende no WhatsApp</a>
+      </div>
+      <div id="depoimentos" class="section">
+        <h1>Depoimentos</h1>
+        <blockquote>"Excelente atendimento e profissionalismo. Minhas dores melhoraram muito!" - Maria S.</blockquote>
+        <blockquote>"Espaço acolhedor e professores incríveis. Recomendo!" - João P.</blockquote>
+      </div>
+      <div id="contato" class="section">
+        <h1>Contato</h1>
+        <p>Rua Vergueiro, 3185 - Vila Mariana, SP</p>
+        <p>WhatsApp: (11) 98879-7362</p>
+        <p>Instagram: @fisioatletica</p>
+      </div>
+      <div id="login" class="section">
+        <h1>Login</h1>
+        <form onsubmit="login(event)">
+          <input type="text" placeholder="Usuário" required><br><br>
+          <input type="password" placeholder="Senha" required><br><br>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
     </div>
-  </header>
-  <section id="home">
-    <div class="container">
-      <h1>Bem-vindo à FisioAtlética</h1>
-      <p>Cuidando do seu movimento, transformando sua saúde.</p>
-      <a href="#contato" class="btn">Agende sua aula experimental</a>
-    </div>
-  </section>
-  <section id="sobre">
-    <div class="container">
-      <h2>Sobre Nós</h2>
-      <p>Na FisioAtlética, unimos a experiência da fisioterapia com os benefícios do Pilates para oferecer tratamentos personalizados e eficazes. Localizados na Vila Mariana, cuidamos da sua saúde de forma completa.</p>
-    </div>
-  </section>
-  <section id="servicos">
-    <div class="container">
-      <h2>Nossos Serviços</h2>
-      <ul>
-        <li>Pilates personalizado</li>
-        <li>Fisioterapia esportiva</li>
-        <li>Reabilitação pós-cirúrgica</li>
-        <li>Tratamentos para dores crônicas</li>
-      </ul>
-    </div>
-  </section>
-  <section id="depoimentos">
-    <div class="container">
-      <h2>Depoimentos de Nossos Alunos</h2>
-      <blockquote>"Excelente atendimento e profissionalismo. Minhas dores melhoraram muito!" - Maria S.</blockquote>
-      <blockquote>"Espaço acolhedor e professores incríveis. Recomendo!" - João P.</blockquote>
-    </div>
-  </section>
-  <section id="contato">
-    <div class="container">
-      <h2>Contato</h2>
-      <p>Rua Vergueiro, 3185 - Vila Mariana, SP</p>
-      <p>Telefone/WhatsApp: (11) 98879-7362</p>
-      <p>Instagram: <a href="https://instagram.com/fisioatletica" target="_blank">@fisioatletica</a></p>
-      <form>
-        <input type="text" placeholder="Seu nome" required />
-        <input type="email" placeholder="Seu e-mail" required />
-        <textarea placeholder="Sua mensagem" required></textarea>
-        <button type="submit">Enviar mensagem</button>
-      </form>
-    </div>
-  </section>
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 FisioAtlética Fisioterapia e Pilates. Todos os direitos reservados.</p>
-    </div>
-  </footer>
+  </div>
+  <button class="agendar-btn" onclick="window.open('https://wa.me/5511988797362', '_blank')">Agendar Aula</button>
+  <script src="script.js"></script>
 </body>
 </html>
